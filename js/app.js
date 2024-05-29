@@ -19,7 +19,7 @@ import RenderManager from "./render.js";
         if(user){
             document.getElementById('loginSection').style.display = 'none'
             document.getElementById('taskSection').style.display = 'block'
-            RenderManager.render(TaskManager.getAllTasks());
+            RenderManager.render(TaskManager.taskList);
         }
 
         document.getElementById('logoutBtn').addEventListener('click', ()=>{
@@ -38,7 +38,7 @@ import RenderManager from "./render.js";
                 Auth.login(username);
                 document.getElementById('loginSection').style.display = 'none';
                 document.getElementById('taskSection').style.display = 'block';
-                RenderManager.render(TaskManager.getAllTasks());
+                RenderManager.render(TaskManager.taskList);
             } else {
                 console.error('Username is required');
             }
@@ -48,9 +48,9 @@ import RenderManager from "./render.js";
         taskform.addEventListener('submit', (e)=>{ 
             e.preventDefault();
             const task = document.getElementById('taskInput').value ;
-            console.log('task submitted form submitted', task, TaskManager.getAllTasks());
+            console.log('task submitted form submitted', task, TaskManager.taskList);
             TaskManager.addTask(task);
-            RenderManager.render(TaskManager.getAllTasks());
+            RenderManager.render(TaskManager.taskList);
             document.getElementById('taskForm').reset();
         }) 
     })
