@@ -14,12 +14,11 @@ import RenderManager from "./render.js";
     // css responsiveness 
 
     document.addEventListener('DOMContentLoaded', ()=>{
-        const user = Auth.getUser();
-        console.info(user)
+        const user = Auth.getUser(); 
         if(user){
             document.getElementById('loginSection').style.display = 'none'
             document.getElementById('taskSection').style.display = 'block'
-            RenderManager.render(TaskManager.taskList);
+            RenderManager.render(TaskManager.getAllTasks());
         }
 
         document.getElementById('logoutBtn').addEventListener('click', ()=>{
@@ -30,15 +29,13 @@ import RenderManager from "./render.js";
 
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            console.log('Login form submitted');
-            
+            e.preventDefault(); 
             const username = document.getElementById('username').value;
             if (username) {
                 Auth.login(username);
                 document.getElementById('loginSection').style.display = 'none';
                 document.getElementById('taskSection').style.display = 'block';
-                RenderManager.render(TaskManager.taskList);
+                RenderManager.render(TaskManager.getAllTasks());
             } else {
                 console.error('Username is required');
             }
@@ -47,10 +44,9 @@ import RenderManager from "./render.js";
         const taskform = document.getElementById('taskForm')
         taskform.addEventListener('submit', (e)=>{ 
             e.preventDefault();
-            const task = document.getElementById('taskInput').value ;
-            console.log('task submitted form submitted', task, TaskManager.taskList);
+            const task = document.getElementById('taskInput').value ; 
             TaskManager.addTask(task);
-            RenderManager.render(TaskManager.taskList);
+            RenderManager.render(TaskManager.getAllTasks());
             document.getElementById('taskForm').reset();
         }) 
     })
