@@ -5,8 +5,7 @@ const RenderManager = (()=>{
         // get element by id and render
 
         let element = document.getElementById('taskList');
-        element.innerHTML = '';
-        console.log("render",tasks )
+        element.innerHTML = '';  
         tasks.forEach(item => {
             let ulEle = document.createElement('ul');
             ulEle.innerText = item.task;
@@ -18,7 +17,7 @@ const RenderManager = (()=>{
             btnEle.addEventListener('click', (e)=>{ 
                 const buttonId = e.target.id;
                 TaskManager.removeTask(buttonId);
-                render(TaskManager.taskList)
+                render(TaskManager.getAllTasks())
             })
             liEle.appendChild(btnEle);
             ulEle.appendChild(liEle);

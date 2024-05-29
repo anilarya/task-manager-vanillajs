@@ -1,7 +1,9 @@
 const TaskManager = (()=>{
     let taskList = JSON.parse(localStorage.getItem('tasks')) || [];
      
-    
+    const getAllTasks =()=>{
+        return JSON.parse(localStorage.getItem('tasks')) || [];
+    }
     const deleteAllTasks = ()=>{
         localStorage.removeItem('tasks');
     }
@@ -27,7 +29,7 @@ const TaskManager = (()=>{
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
-    return {taskList, deleteAllTasks,  removeTask, addTask, editTask}
+    return {taskList,getAllTasks,  deleteAllTasks,  removeTask, addTask, editTask}
 
 })();
 
